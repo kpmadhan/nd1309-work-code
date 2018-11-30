@@ -2,14 +2,19 @@
 |  Use this file to test your project.
 |  =========================================================*/
 
+/* ==== Rubricks 1 =======
+Blockchain Function has been configured to use LevelDB Node.js Library
+==========================*/
+
 const BlockChain = require('./BlockChain.js');
 const Block = require('./Block.js');
 
 let myBlockChain = new BlockChain.Blockchain();
 
+
 setTimeout(function () {
 	console.log("Waiting...")
-}, 10000);
+}, 4000);
 
 /******************************************
  ** Function for Create Tests Blocks   ****
@@ -25,7 +30,7 @@ setTimeout(function () {
 			i++;
 			if (i < 10) theLoop(i);
 		});
-	}, 10000);
+	}, 4000);
   })(0);
 
 
@@ -49,7 +54,7 @@ myBlockChain.getBlockHeight().then((height) => {
 myBlockChain.getBlock(0).then((block) => {
 	console.log(JSON.stringify(block));
 }).catch((err) => { console.log(err);});
-*?
+*/
 
 /***********************************************
  ***************** Validate Block  *************
@@ -95,12 +100,12 @@ myBlockChain.getBlock(6).then((block) => {
 		}
 	}).catch((err) => { console.log(err);});
 }).catch((err) => { console.log(err);});
-
+*/
 /***********************************************
  ***************** Validate Chain  *************
  ***********************************************/
 
-/*
+
 // Be careful this only will work if `validateChain` method in Blockchain.js file return a Promise
 myBlockChain.validateChain().then((errorLog) => {
 	if(errorLog.length > 0){
@@ -115,4 +120,4 @@ myBlockChain.validateChain().then((errorLog) => {
 .catch((error) => {
 	console.log(error);
 })
-*/
+
