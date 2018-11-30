@@ -9,6 +9,40 @@ To setup the project for review do the following:
 2. Run command __npm install__ to install the project dependencies.
 3. Run command __node simpleChain.js__ in the root directory.
 
+
+## Implementation
+
+1) Added the following implementation for  Genesis Block , the logic here is to check for the block height from the levelDB and if it is 0 then added a geneis block. And since this method has been included in the constructor of the BlockChain class. A genesis block will be created as soon as the blockchain class is invoked.
+
+```
+generateGenesisBlock() {
+        console.log('creating genesis block')
+        // Add your code here
+        let self = this;
+        return new Promise((resolve, reject) => {
+            self.getBlockHeight().then((blockheight) => {
+                if (blockheight === 0) {
+                    let genBlock = new Block.Block("Genesis Block");
+                    self.addBlock(genBlock).then(function (block) {
+                        console.log("Genesis Block Added");
+                        console.log(block);
+                        resolve(block);
+                    }, reason => {
+                        reject("Error Creating Genesis Block");
+                        console.log(reason); // Error!
+                    });
+                } else {
+                    resolve("Genesis Block created already");
+                }
+
+            }).catch((err) => {
+                console.log(err);
+                reject(err)
+            });
+        });
+    }
+```
+
 ## Testing the project
 
 The file __simpleChain.js__ in the root directory has all the code to be able to test the project, please review the comments in the file and uncomment the code to be able to test each feature implemented:
