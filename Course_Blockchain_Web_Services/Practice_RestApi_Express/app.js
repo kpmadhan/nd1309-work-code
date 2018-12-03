@@ -8,10 +8,10 @@ const bodyParser = require("body-parser");
  */
 class BlockAPI {
 
-    /**
-     * Constructor that allows initialize the class 
-     */
-    constructor() {
+	/**
+	 * Constructor that allows initialize the class 
+	 */
+	constructor() {
 		this.app = express();
 		this.initExpress();
 		this.initExpressMiddleWare();
@@ -19,31 +19,33 @@ class BlockAPI {
 		this.start();
 	}
 
-    /**
-     * Initilization of the Express framework
-     */
+	/**
+	 * Initilization of the Express framework
+	 */
 	initExpress() {
 		this.app.set("port", 8000);
 	}
 
-    /**
-     * Initialization of the middleware modules
-     */
+	/**
+	 * Initialization of the middleware modules
+	 */
 	initExpressMiddleWare() {
-		this.app.use(bodyParser.urlencoded({extended:true}));
+		this.app.use(bodyParser.urlencoded({
+			extended: true
+		}));
 		this.app.use(bodyParser.json());
 	}
 
-    /**
-     * Initilization of all the controllers
-     */
+	/**
+	 * Initilization of all the controllers
+	 */
 	initControllers() {
 		require("./BlockController.js")(this.app);
 	}
 
-    /**
-     * Starting the REST Api application
-     */
+	/**
+	 * Starting the REST Api application
+	 */
 	start() {
 		let self = this;
 		this.app.listen(this.app.get("port"), () => {
