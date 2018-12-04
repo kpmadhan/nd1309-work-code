@@ -43,18 +43,23 @@ core implementation below
 GET /block/:index
 
 ```
-getBlockByIndex() {
-        this.app.get("/block/:index", (req, res) => {
+
+  this.app.get("/block/:index", (req, res) => {
             // Add your code here
             this.myBlockChain.getBlock(req.params.index).then((block) => {
                 console.log(JSON.stringify(block));
+                if(block) {
                 res.setHeader('Content-Type', 'application/json');
                 res.send(block);
+                }
+                else {
+                    res.status(404).send('No such block exist ')
+                }
             }).catch((err) => {
                 console.log(err);
             });
         });
-    }
+        
 ```
 
 POST /block
